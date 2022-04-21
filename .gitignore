@@ -109,7 +109,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
-
+dev/
 # Spyder project settings
 .spyderproject
 .spyproject
@@ -127,3 +127,8 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+#.dsstore
+*.DS_Store
+#log
+log/

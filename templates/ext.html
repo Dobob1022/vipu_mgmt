@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<head>
+    <title>EXT TEST PAGE</title>
+</head>
+<body></body>
+    <form action="/ex_test" method="POST">
+        <input type="text" id="input" name="hostname" placeholder="Hostname">
+        <input type="text" id="input" name="id" placeholder="remoteID">
+        <input type="password" id="input" name="password" placeholder="RemotePassword">
+        <input type="submit" value="connect" name="connect">
+
+    </form>
+    <ul>
+        {{value|safe}}
+    </ul>
+
+    <ul>
+        Error:
+        {{err|safe}}
+    </ul>
+</body>
+</html>
