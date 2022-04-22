@@ -74,7 +74,31 @@ def command():
                 request.form.get('send') == "send"
                 command = request.form['command']
                 exec = ssh.exe_command_return(command)
-                print("true?:",exec[0])
+                if exec[0] == False:
+                    logging.error(exec[1])
+                    return render_template('command.html',err = exec[1])
+                else:
+                    result = [w.replace('\n','<p>') for w in exec]
+                return render_template('command.html',value = result)
+            else:
+                return Response("NOT OK",status=500)
+        else:
+            return Response("Method is not allowed!",status=405)
+    else:
+        return redirect("/ex_test",err="Not Logined!")
+
+    
+
+@app.route("/vipu", methods = ['GET','POST'])
+def vipu():
+    if 'login_status' in session:
+        if request.method == "GET":
+            return render_template("command.html")
+        elif request.method == "POST":
+            if 'login_status' in session:
+                request.form.get('send') == "send"
+                command = request.form['command']
+                exec = ssh.exe_command_return(command)
                 if exec[0] == False:
                     logging.error(exec[1])
                     return render_template('command.html',err = exec[1])
@@ -88,37 +112,7 @@ def command():
     else:
         return redirect("/ex_test")
 
-    
 
-
-
-
-
-@app.route("/ex_test1",methods=["GET","POST"])
-def external1():
-    if request.method == "GET":
-        return render_template('ext.html')
-    else:
-        if request.method == "POST":
-            request.form.get('ext_1') == 'ext_1'
-            hostname = request.form["hostname"]
-            id = request.form["id"]
-            password = request.form["password"]
-            ssh_result = ssh.connect(hostname,id,password)
-            if ssh_result == None:
-                exec = ssh.exe_command_return("ls -al")
-                ssh.close()
-                if exec[0] == False:
-                    logging.error(exec[1])
-                    return render_template('ext.html',err = str(exec[1]))
-                else:
-                    result = [w.replace('\n','<p>') for w in exec]
-                    return render_template('ext.html',value = result)
-            else: #ssh login error expection.
-                logging.error(ssh_result)
-                return render_template('ext.html',err = ssh_result)
-        else:
-            return Response("Method is not allowed!",status=405)
 
 
 
