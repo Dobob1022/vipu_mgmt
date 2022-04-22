@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<head>
+    <title>COMMAND TEST PAGE</title>
+</head>
+<body></body>
+    <form action="/command" method="POST">
+        <input type="text" id="input" name="command" placeholder="command">
+        <input type="submit" value="send" name="send">
+
+    </form>
+    <ul>
+        {{value|safe}}
+    </ul>
+
+    <ul>
+        Error:
+        {{err|safe}}
+    </ul>
+</body>
+</html>

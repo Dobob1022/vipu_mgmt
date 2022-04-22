@@ -21,7 +21,7 @@ def exe_command_no_return(command):
             return True
         
 def exe_command_return(command):
-        stdin, stdout, stderr = client.exec_command(command)
+        stdin, stdout, stderr = client.exec_개command(command)
         output = stdout.readlines()
         if len(output) == 0:
             result = stderr.read()
@@ -29,19 +29,6 @@ def exe_command_return(command):
         else:
             return output
         
-def test(command):
-    try:
-        stdin, stdout, stderr = client.exec_command(command)
-        a = stdout.read()
-        if len(a) == 0:
-            result = stderr.read()
-            print("stderr:",result)
-            return str(result)
-        else:
-            print(stdout.read())
-            return "FUW"
-    except Exception as e:
-        return str(e)
 
 def close():
     try:
