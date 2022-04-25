@@ -4,7 +4,7 @@ client = paramiko.SSHClient()
 def connect(host,id,pw):
     client.set_missing_host_key_policy(paramiko.WarningPolicy())
     try:
-        client.connect(host,22,id, pw)
+        client.connect(hostname=host,port=22,username=id, password=pw, timeout=5)
     except Exception as e:
         return str(e)
 def exe_command_no_return(command):
@@ -21,7 +21,7 @@ def exe_command_no_return(command):
             return True
         
 def exe_command_return(command):
-        stdin, stdout, stderr = client.exec_개command(command)
+        stdin, stdout, stderr = client.exec_command(command)
         output = stdout.readlines()
         if len(output) == 0:
             result = stderr.read()

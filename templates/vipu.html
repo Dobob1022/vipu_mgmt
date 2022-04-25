@@ -1,15 +1,44 @@
 <!DOCTYPE html>
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <script>
+            alert("{{messages[-1]}}")
+        </script>
+    {% endif %}
+{% endwith %}
 <head>
     <title>COMMAND TEST PAGE</title>
 </head>
-<body></body>
-    <form action="/command" method="POST">
-        <input type="text" id="input" name="command" placeholder="command">
-        <input type="submit" value="send" name="send">
+<body>
+    <form action="/exec" method="GET">
+        <!-- VIPU_TEST_PARTITON_CREATE
+        <input type="text" id="input" name="partition_name" placeholder="partition_name"><input type="text" id="input" name="size" placeholder="size">
+        <input type="submit" value="send" name="send"> -->
+
+        VIPU_CHECKBOX_TEST
+        <p>VIPU-ADMIN</p>
+        Create
+        <label><input type='checkbox'  name="clr_checkbox" value="create"></label>
+        remove
+        <label><input type='checkbox'  name="clr_checkbox" value="remove"></label>
+        list
+        <label><input type='checkbox'  name="clr_checkbox" value="list"></label>
+    </br>
+        partition
+        <label><input type='checkbox' name="pac_checkbox" value="partiton"></label>
+        cluster
+        <lable><input type='checkbox' name="pac_checkbox" value="cluster"></lable>
+        allocation
+        <lable><input type='checkbox' name="pac_checkbox" value="allocation"></lable>
+
+        <button>Submit</button>
+        
+    <br>
+
 
     </form>
     <ul>
-        {{value|safe}}
+        {{value|safe}} 
     </ul>
 
     <ul>

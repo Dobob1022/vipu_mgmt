@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+{% block content %}
+
+
+<form method="POST" action="/vipu_cb">
+<div class="card" style="margin:50px 0">
+    <div class="card-header"><b>VIPU_Checkbox_Test</b></div>
+    Create
+    <input type="checkbox" value="C" class="danger" name='clr_checkbox'>
+    <br>
+    List
+    <input type="checkbox" value="L" class="danger" name='clr_checkbox'>
+    <br>
+    Remove
+    <input type="checkbox" value="R" class="danger" name='clr_checkbox'>
+    <button type="submit">Go</button>
+</div>
+</form>
+
+{% endblock content %}

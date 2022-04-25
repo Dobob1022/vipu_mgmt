@@ -1,12 +1,37 @@
 <!DOCTYPE html>
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <script>
+            alert("{{messages[-1]}}")
+        </script>
+    {% endif %}
+{% endwith %}
 <head>
-    <title>TEST PAGE</title>
+    <title>COMMAND TEST PAGE</title>
 </head>
 <body>
-    <form action="/test" method="POST">
-        <input type="submit" value="test" name="test">
-        <input type="submit" value="mkdir" name="mkdir">
+    <form action="/vipu" method="get">
+        <!-- VIPU_TEST_PARTITON_CREATE
+        <input type="text" id="input" name="partition_name" placeholder="partition_name"><input type="text" id="input" name="size" placeholder="size">
+        <input type="submit" value="send" name="send"> -->
+        list
+        <input type='checkbox' value="true" name="list">
+        create
+        <input type='checkbox' value="true" name="create">
+        remove
+        <input type='checkbox' value="true" name="remove">
+        
+        <button>Send</button>
+
 
     </form>
+    <ul>
+        {{value|safe}} 
+    </ul>
+
+    <ul>
+        Error:
+        {{err|safe}}
+    </ul>
 </body>
 </html>
